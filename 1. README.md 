@@ -1,0 +1,14 @@
+
+# Budżet Domowy
+
+Aplikacja do śledzenia wydatków domowych napisana w Pythonie.
+
+## Funkcjonalności
+
+- ✅ Dodawanie wydatków z kategoryzacją
+- 📊 Generowanie raportów i wykresów
+- 📅 Śledzenie wydatków w czasie
+- 📈 Analiza trendów wydatków
+- 📊 Statystyki według kategorii
+
+## Wymagania
