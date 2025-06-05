@@ -127,4 +127,31 @@ def start_gui():
     # Ustawienie fokusa na pierwsze pole
     kategoria_entry.focus()
 
+    # Dodaj label na sumę wydatków
+    suma_frame = ttk.Frame(root, padding="10")
+    suma_frame.pack(fill=X, padx=10, pady=5)
+
+    suma_label = ttk.Label(suma_frame, text="", font=("Arial", 10, "bold"))
+    suma_label.pack(side=RIGHT)
+
+    def aktualizuj_sume():
+        try:
+            suma = pobierz_sume_wydatkow(conn)
+            suma_label.config(text=f"Suma wszystkich wydatków: {suma:.2f} zł")
+        except Exception as e:
+            messagebox.showerror("Błąd", f"Błąd podczas obliczania sumy: {str(e)}")
+
+    # Modyfikacja funkcji odswiez_tabele
+    def odswiez_tabele():
+        try:
+            for row in tabela.get_children():
+                tabela.delete(row)
+            dane = pobierz_wszystkie_wydatki(conn)
+            for row in dane:
+                tabela.insert("", END, values=row)
+            aktualizuj_sume()  # Dodaj to wywołanie
+        except Exception as e:
+            messagebox.showerror("Błąd", f"Błąd podczas odświeżania tabeli: {str(e)}")
+            print(f"Błąd podczas odświeżania tabeli: {e}")
+
     root.mainloop()

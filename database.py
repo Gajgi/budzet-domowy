@@ -27,3 +27,9 @@ def pobierz_wszystkie_wydatki(conn):
     cursor = conn.cursor()
     cursor.execute("SELECT kategoria, kwota, data, uwagi FROM wydatki")
     return cursor.fetchall()
+
+def pobierz_sume_wydatkow(conn):
+    cursor = conn.cursor()
+    cursor.execute("SELECT SUM(kwota) FROM wydatki")
+    suma = cursor.fetchone()[0]
+    return suma if suma else 0.0
